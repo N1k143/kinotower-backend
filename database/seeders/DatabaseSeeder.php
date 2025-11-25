@@ -2,12 +2,15 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\Gender;
 use App\Models\User;
+use Database\Factories\AdminFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -46,7 +49,11 @@ class DatabaseSeeder extends Seeder
         Category::factory()->create(['name' => 'Thriller']);
         Category::factory()->create(['name' => 'Comedy']);
 
-
+        Admin::factory()->create([
+            'username' => 'nikita',
+            'email' => 'nikita67@gmail.com',
+            'password' => Hash::make('nikita'),
+        ]);
 
 
 
