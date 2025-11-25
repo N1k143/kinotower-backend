@@ -14,13 +14,14 @@
                     <th>Name</th>
                     <th></th>
                 </thead>
+                @foreach($countries as $country)
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Afgan</td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $country->name }}</td>
                         <td>
-                            <a href="#" class="btn btn-outline-warning">Edit</a>
-                            <form class="d-inline-block" action="" method="POST">
+                            <a href="{{ route('countries.edit', $country->id) }}" class="btn btn-outline-warning">Edit</a>
+                            <form class="d-inline-block" action="{{ route('countries.destroy', $country->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-outline-danger" type="submit">Delete</button>
@@ -28,6 +29,7 @@
                         </td>
                     </tr>
                 </tbody>
+                @endforeach
             </table>
         </div>
     </div>

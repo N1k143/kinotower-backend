@@ -151,7 +151,7 @@
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand">
             <!--begin::Brand Link-->
-            <a href="./index.html" class="brand-link">
+            <a href="/admin/" class="brand-link">
                 <!--begin::Brand Image-->
                 <img
                     src="/assets/img/AdminLTELogo.png"
@@ -181,9 +181,15 @@
 
                     <li class="nav-header">MULTI LEVEL EXAMPLE</li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-circle-fill"></i>
-                            <p>Level 1</p>
+                        <a href="{{ route('countries.index') }}" class="nav-link">
+                            <i class="bi bi-globe-americas"></i>
+                            <p>Countries</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('categories.index') }}" class="nav-link">
+                            <i class="bi bi-bookshelf"></i>
+                            <p>Categories</p>
                         </a>
                     </li>
                 </ul>

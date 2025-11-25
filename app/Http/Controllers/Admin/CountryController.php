@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Http\Requests\Admin\CountryRequest;
+use App\Models\Country;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class CountryController extends Controller
      */
     public function index()
     {
-        return view('admin.countries.index');
+        $countries = Country::all();
+        return view('admin.countries.index', compact('countries'));
     }
 
     /**
@@ -20,39 +22,34 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.countries.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CountryRequest $request)
     {
-        //
+        $data = $request->validated();
+        Country::create($data);
+        return redirect()->route('countries.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        //
+        $country = country::findOrFail($id);
+        return view('admin.countries.create', compact('country'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CountryRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        $country = country::findOrFail($id);
+        $country -> update($data);
+        return redirect()->route('countries.index');
     }
 
     /**
@@ -60,6 +57,7 @@ class CountryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        country::destroy($id);
+        return redirect()->route('countries.index');
     }
 }
