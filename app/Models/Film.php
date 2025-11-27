@@ -25,7 +25,7 @@ class Film extends Model
         'link_video',
     ];
     public function categories(){
-        return $this->belongsToMany(Category::class, 'category_film');
+        return $this->belongsToMany(Category::class, 'category_films');
     }
 
     public function country(){

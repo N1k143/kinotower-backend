@@ -3,8 +3,11 @@
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\FilmCategoryController;
+use App\Http\Controllers\Admin\FilmController;
 use App\Http\Controllers\Admin\MainController;
 
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,4 +23,11 @@ Route::middleware(['auth:admin'])->group(function() {
     Route::get('/', [MainController::class, 'index'])->name('home');
     Route::resource('countries', CountryController::class)->except('show');
     Route::resource('categories', CategoryController::class)->except('show');
+    Route::resource('films', FilmController::class);
+    Route::get('/films/{filmId}/categories', [FilmCategoryController::class, 'index'])->name('films.categories');
+    Route::post('/films/{filmId}/categories', [FilmCategoryController::class, 'save'])->name('films.categories.save');
+
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::post('users/{Id}/destroy' , [UserController::class, 'destroy'])->name('users.destroy');
+    Route::post('users/{Id}/restore' , [UserController::class, 'restore'])->name('users.restore');
 });

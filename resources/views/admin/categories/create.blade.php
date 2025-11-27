@@ -17,17 +17,19 @@
                     <select name="parent_id" id="parent_id" class="form-select">
                         <option value="">No parent genre</option>
                         @foreach($categories as $itemCategory)
-                            <option @selected(isset($category)
-                                    && $category->itemCategory
-                                    && $category->itemCategory->id === $itemCategory->id)
-                                    value="{{ $itemCategory->id }}">
-                                {{ $itemCategory->name }}
-                            </option>
+                            @unless(isset($category) && $category->id === $itemCategory->id)
+                                <option @selected(isset($category)
+                                        && $category->itemCategory
+                                        && $category->itemCategory->id === $itemCategory->id)
+                                        value="{{ $itemCategory->id }}">
+                                    {{ $itemCategory->name }}
+                                </option>
+                            @endunless
                         @endforeach
                     </select>
                 </div>
                 <div class="mt-4">
-                    <button class="btn btn-outline-success" type="submit">save</button>
+                    <button class="btn btn-outline-success" type="submit">Save</button>
                 </div>
             </form>
         </div>

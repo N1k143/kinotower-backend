@@ -1,6 +1,6 @@
 @extends('admin.layout.main')
 
-@section('title', 'list categories')
+@section('title', 'List categories')
 
 @section('content')
     <div class="row">
@@ -28,11 +28,11 @@
                         <td>{{$category->name}}</td>
                         <td>{{ isset($category->parentCategory) ? $category->parentCategory->name : 'No parent' }}</td>
                         <td>
-                            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-outline-warning">edit</a>
+                            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-outline-warning">Edit</a>
                             <form class="d-inline-block" action="{{route('categories.destroy', $category->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-outline-danger">delete</button>
+                                <button class="btn btn-outline-danger">Delete</button>
                             </form>
                         </td>
                     </tr>
